@@ -11,9 +11,14 @@ export class CursoService {
   listaCurso_one:any[] = [];
   total:number;
   pagina:number= 0;
+  etapa_curso:any[] = [];
   etapa:any[] = [];
   leccion:any[] = [];
   formularios:any[] = [];
+  lec:any[] = [];
+  cont:any[] = [];
+  a:any[] = [];
+  b:any[] = [];
   constructor(public http: Http) {
   }
     getCursos(){
@@ -58,13 +63,27 @@ export class CursoService {
 	  		data => { 
 	  			if(data.error){
 				}else{
+					this.etapa_curso = data.curso;
 	  				this.etapa = data.etapa;
 	  				this.leccion = data.leccion;
 	  				this.formularios = data.formulario;
 	  			}
-	  		} );
+		} );
 	}
-
+	getListadoCursosIdUrlLeccion(id_curso,id_etapa,url_leccion){
+		let url = URL_SERVICIOS + 'usuario/listadoCursosIdUrlLeccionIonic/'+id_curso+"/"+id_etapa+"/"+url_leccion;
+			  	this.http.get(url).map(res => res.json()).subscribe( 
+	  		data => { 
+	  			if(data.error){
+				}else{
+	  				this.lec = data.lec;
+	  				this.cont = data.cont;
+	  				this.a = data.curso;
+	  				this.b = data.etapa;
+	  				console.log(this.lec);
+	  			}
+		} );
+	}
 
 
 }
