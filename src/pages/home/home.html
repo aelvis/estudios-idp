@@ -1,14 +1,30 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Bienvenidos
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  	<ion-grid>
+	  	<ion-row *ngFor="let pares of _cs.cursos">
+		    <ion-col *ngFor="let item of pares" 
+		    [navParams]="{curso: item.url_curso}" [navPush]="cursoPage">
+		    	<img [src]="item.imagen | imagen">
+		    	<p>
+		    		{{item.nombre_curso}}
+		    	<br>
+		    		{{item.des}}
+		    	<br>
+		    		{{item.tag}}
+		    	</p>
+		    </ion-col>
+	  	</ion-row>
+	</ion-grid>
+<div *ngIf="(_cs.cursosprueba ? _cs.cursosprueba.length : '' )* 1 != _cs.total">
+	<ion-infinite-scroll (ionInfinite)="siguiente_pagina($event)">
+	   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</div>
 </ion-content>

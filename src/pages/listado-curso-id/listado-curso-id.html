@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>LECCIÓN</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="inicio">
+        Inicio
+      </ion-segment-button>
+      <ion-segment-button value="lecciones">
+         Lecciones
+      </ion-segment-button>
+      <ion-segment-button value="formularios">
+        Formularios
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+<div [ngSwitch]="pet" padding>
+  <ion-list *ngSwitchCase="'inicio'">
+    <h4 style="text-align: center">{{_cs.etapa.titulo}}</h4>
+	<div [innerHTML]="_cs.etapa.descripcion"></div>
+  </ion-list>
+  <ion-list *ngSwitchCase="'lecciones'">
+    <ion-item *ngFor="let item of _cs.leccion">
+      {{item.nombre}}
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'formularios'">
+    <ion-item *ngFor="let item of _cs.formularios">
+        {{item.nombre_formulario}}
+    </ion-item>
+  </ion-list>
+</div>
+</ion-content>
