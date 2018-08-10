@@ -10,6 +10,7 @@ import { CursoPage } from '../index.paginas';
 })
 export class HomePage {
 	cursoPage = CursoPage;
+  
   constructor(public navCtrl: NavController, private _cs: CursoService) {
 
   }

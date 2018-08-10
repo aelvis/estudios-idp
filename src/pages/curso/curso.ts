@@ -8,6 +8,7 @@ import { ListadoCursoIdPage } from '../index.paginas';
 })
 export class CursoPage {
   listadoCursoIdPage = ListadoCursoIdPage;
+  pet: string = "inicio";
   constructor(public navCtrl: NavController, public navParams: NavParams, private _cs: CursoService) {
   	
   }
