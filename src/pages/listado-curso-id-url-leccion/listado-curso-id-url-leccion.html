@@ -7,13 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{_cs.cont_lec_lista.nombre_etapa_leccion}}</ion-title>
+    <ion-title>{{cont_lec_lista.nombre_etapa_leccion}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<h2 style="text-align: center;">{{_cs.cont_lec_lista.nombre_etapa_leccion}}</h2>
-	<div [innerHTML]="_cs.cont_lec_lista.descripcion"></div>
+	<h2 style="text-align: center;">{{cont_lec_lista.nombre_etapa_leccion}}</h2>
+	<div [innerHTML]="cont_lec_lista.descripcion"></div>
 </ion-content>

@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+import { UsuarioService } from '../../providers/usuario/usuario'
 @Component({
   selector: 'page-inicio',
   templateUrl: 'inicio.html',
 })
 export class InicioPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  pet: string = "login";
+  correo: string = "";
+  password: string = "";
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _usu: UsuarioService) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InicioPage');
+  ingresar(){
+  	this._usu.ingresar(this.correo, this.password).subscribe(()=>{
+  	});
   }
-
 }

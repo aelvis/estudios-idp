@@ -1,5 +1,7 @@
 {
   "name": "estudios-idp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

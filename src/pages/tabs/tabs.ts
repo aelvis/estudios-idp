@@ -7,9 +7,9 @@ import { UsuarioPage, InicioPage } from '../index.paginas';
   templateUrl: 'tabs.html',
 })
 export class TabsPage {
-	tab1 = HomePage;
-	tab2 = UsuarioPage;
-	tab3 = InicioPage;
+	tab1 = InicioPage;
+	tab2 = HomePage;
+	tab3 = UsuarioPage;
 
 
 }

@@ -5,8 +5,7 @@ import 'rxjs/add/operator/map';
 import { URL_SERVICIOS } from '../../config/url.servicios';
 @Injectable()
 export class CursoService {
-  cont_lec_lista:any[] = [];
-  form_datos:any[] = [];
+  
   constructor(public http: Http) {
   }
 	getCursos(){
@@ -27,23 +26,10 @@ export class CursoService {
 	}
 	getListadoCursosIdUrlLeccionLista(id_curso,id_etapa,url_leccion,url_etapa_leccion){
 		let url = URL_SERVICIOS + 'usuario/listadoCursosIdUrlLeccionListaIonic/'+id_curso+"/"+id_etapa+"/"+url_leccion+"/"+url_etapa_leccion;
-		this.http.get(url).map(res => res.json()).subscribe( 
-	  		data => { 
-	  			if(data.error){
-				}else{
-	  				this.cont_lec_lista = data.cont;
-	  			}
-		} );
+		return this.http.get(url).map(res => res.json());
 	}
 	getFormulario(id_curso,id_etapa,url_formulario){
 		let url = URL_SERVICIOS + 'usuario/formularioIonic/'+id_curso+"/"+id_etapa+"/"+url_formulario;
-		this.http.get(url).map(res => res.json()).subscribe( 
-	  		data => { 
-	  			if(data.error){
-				}else{
-	  				this.form_datos = data.datos;
-	  				console.log(this.form_datos);
-	  			}
-		} );
+		return this.http.get(url).map(res => res.json());
 	}
 }

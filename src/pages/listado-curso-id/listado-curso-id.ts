@@ -29,6 +29,6 @@ export class ListadoCursoIdPage {
             this.leccion = data.leccion;
             this.formularios = data.formulario;
           }
-    } );
+    });
   }
 }

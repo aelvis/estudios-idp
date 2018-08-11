@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CursoService } from '../../providers/curso/curso';
-
-
 import { CursoPage } from '../index.paginas';
-
+import { UsuarioService } from '../../providers/usuario/usuario';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,7 +12,7 @@ export class HomePage {
   cursos:any[] = [];
   cursosprueba:any[] = [];
   total:any[] = [];
-  constructor(public navCtrl: NavController, private _cs: CursoService) {
+  constructor(public navCtrl: NavController, private _cs: CursoService, private _usu: UsuarioService) {
   }
   ionViewWillEnter(){
     this._cs.getCursos().subscribe(
