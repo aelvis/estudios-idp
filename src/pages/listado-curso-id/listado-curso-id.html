@@ -1,10 +1,8 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>LECCIÓN</ion-title>
+    <ion-title>{{etapa.titulo}}</ion-title>
   </ion-navbar>
 </ion-header>
-
-
 <ion-content >
   <ion-toolbar>
     <ion-segment [(ngModel)]="lec">
@@ -21,19 +19,21 @@
   </ion-toolbar>
 <div [ngSwitch]="lec" padding>
   <ion-list *ngSwitchCase="'inicio'">
-    <h4 style="text-align: center">{{_cs.etapa.titulo}}</h4>
-	<div [innerHTML]="_cs.etapa.descripcion"></div>
+    <h4 style="text-align: center">{{etapa.titulo}}</h4>
+	<div [innerHTML]="etapa.descripcion"></div>
   </ion-list>
   <ion-list *ngSwitchCase="'lecciones'">
-    <ion-item *ngFor="let item of _cs.leccion" [navParams]="{curso: _cs.etapa_curso.url_curso, id: _cs.etapa.url_etapa_curso, url: item.url}" 
+    <ion-item *ngFor="let item of leccion" [navParams]="{curso: etapa_curso.url_curso, id: etapa.url_etapa_curso, url: item.url}" 
     [navPush]="listadoCursoIdUrlLeccionPage">
       {{item.nombre}}
     </ion-item>
   </ion-list>
 
   <ion-list *ngSwitchCase="'formularios'">
-    <ion-item *ngFor="let item of _cs.formularios">
-        {{item.nombre_formulario}} 
+    <ion-item *ngFor="let formu of formularios" 
+    [navParams]="{curso: etapa_curso.url_curso, id: etapa.url_etapa_curso, url: formu.url_formulario}" 
+    [navPush]="formularioPage">
+        {{formu.nombre_formulario}}
     </ion-item>
   </ion-list>
 </div>

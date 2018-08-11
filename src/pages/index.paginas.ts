@@ -14,3 +14,4 @@ export { ListadoCursoIdUrlLeccionPage } from './listado-curso-id-url-leccion/lis
 export { LoginPage } from './login/login';
 export { RegistroPage } from './registro/registro';
 export { UsuarioEditPage } from './usuario-edit/usuario-edit';
+export { UsuarioPage } from './usuario/usuario';

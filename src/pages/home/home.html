@@ -5,10 +5,9 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
   	<ion-grid>
-	  	<ion-row *ngFor="let pares of _cs.cursos">
+	  	<ion-row *ngFor="let pares of cursos">
 		    <ion-col *ngFor="let item of pares" 
 		    [navParams]="{curso: item.url_curso}" [navPush]="cursoPage">
 		    	<img [src]="item.imagen | imagen">
@@ -22,9 +21,4 @@
 		    </ion-col>
 	  	</ion-row>
 	</ion-grid>
-<div *ngIf="(_cs.cursosprueba ? _cs.cursosprueba.length : '' )* 1 != _cs.total">
-	<ion-infinite-scroll (ionInfinite)="siguiente_pagina($event)">
-	   <ion-infinite-scroll-content></ion-infinite-scroll-content>
-	</ion-infinite-scroll>
-</div>
 </ion-content>

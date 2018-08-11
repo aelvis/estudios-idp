@@ -7,10 +7,11 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { TabsPage } from '../pages/tabs/tabs';
 //SERIVICIOS
 import { CursoService, UsuarioService, AlumnoService } from '../providers/index.services';
 //PAGINAS
-import { AlumnosPage, CursoPage,FormularioPage,FormularioRespuestaPage,FormularioRespuestaVerPage,InicioPage,LeccionEtapaPage,ListadoAlumnosFormulariosPage,ListadoAlumnosFormulariosVerPage,ListadoAlumnosFormulariosVerIdPage,ListadoCursoIdPage,ListadoCursoIdUrlPage,ListadoCursoIdUrlLeccionPage,LoginPage,RegistroPage,UsuarioEditPage } from '../pages/index.paginas';
+import { UsuarioPage,AlumnosPage, CursoPage,FormularioPage,FormularioRespuestaPage,FormularioRespuestaVerPage,InicioPage,LeccionEtapaPage,ListadoAlumnosFormulariosPage,ListadoAlumnosFormulariosVerPage,ListadoAlumnosFormulariosVerIdPage,ListadoCursoIdPage,ListadoCursoIdUrlPage,ListadoCursoIdUrlLeccionPage,LoginPage,RegistroPage,UsuarioEditPage } from '../pages/index.paginas';
 //PIPES
 import { ImagenPipe } from '../pipes/imagen/imagen';
 @NgModule({
@@ -33,7 +34,9 @@ import { ImagenPipe } from '../pipes/imagen/imagen';
     ListadoCursoIdUrlLeccionPage,
     LoginPage,
     RegistroPage,
-    UsuarioEditPage
+    UsuarioEditPage,
+    TabsPage,
+    UsuarioPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,9 @@ import { ImagenPipe } from '../pipes/imagen/imagen';
     ListadoCursoIdUrlLeccionPage,
     LoginPage,
     RegistroPage,
-    UsuarioEditPage
+    UsuarioEditPage,
+    TabsPage,
+    UsuarioPage
   ],
   providers: [
     StatusBar,

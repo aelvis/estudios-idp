@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{_cs.listaCurso_one.nombre_curso}}</ion-title>
+    <ion-title>{{listaCurso_one.nombre_curso}}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -16,13 +16,13 @@
   </ion-toolbar>
 <div [ngSwitch]="pet" padding>
   <ion-list *ngSwitchCase="'inicio'">
-    <img [src]="_cs.listaCurso_one.imagen | imagen">
+    <img [src]="listaCurso_one.imagen | imagen">
 	<div padding>
-		<p>{{_cs.listaCurso_one.descripcion}}</p>
+		<p>{{listaCurso_one.descripcion}}</p>
 	</div>
   </ion-list>
   <ion-list *ngSwitchCase="'lecciones'">
-    <ion-item *ngFor="let item of _cs.listaCurso" [navParams]="{curso: _cs.listaCurso_one.url_curso, id: item.url_etapa_curso}" [navPush]="listadoCursoIdPage">
+    <ion-item *ngFor="let item of listaCurso" [navParams]="{curso: listaCurso_one.url_curso, id: item.url_etapa_curso}" [navPush]="listadoCursoIdPage">
 		<ion-icon name="arrow-dropright-circle" item-start></ion-icon>
 		{{item.titulo}}
 	</ion-item>
