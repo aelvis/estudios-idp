@@ -6,7 +6,7 @@
 
 </ion-header>
 <ion-content>
-	<div *ngIf="_usu.activo()">
+	<div *ngIf="_usu.activo() === false">
 		<ion-toolbar>
 		    <ion-segment [(ngModel)]="pet">
 		      	<ion-segment-button value="login">
@@ -48,7 +48,7 @@
 		  </ion-list>
 		</div>  
 	</div>
-	<div *ngIf="_usu.activo() === false">
+	<div *ngIf="_usu.activo() === true">
 		<p>Esta logueado</p>
 	</div>	
 </ion-content>

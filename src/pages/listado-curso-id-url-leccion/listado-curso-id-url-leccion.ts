@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CursoService } from '../../providers/curso/curso'
+
 @Component({
   selector: 'page-listado-curso-id-url-leccion',
   templateUrl: 'listado-curso-id-url-leccion.html',

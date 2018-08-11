@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import { Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
+import { Storage } from '@ionic/storage';
 @Injectable()
 export class CursoService {
-  
-  constructor(public http: Http) {
+  constructor(public http: Http, private platform: Platform, private storage: Storage) {
   }
 	getCursos(){
 		let url = URL_SERVICIOS + 'usuario/listadoCursosIonic/';
@@ -28,8 +28,14 @@ export class CursoService {
 		let url = URL_SERVICIOS + 'usuario/listadoCursosIdUrlLeccionListaIonic/'+id_curso+"/"+id_etapa+"/"+url_leccion+"/"+url_etapa_leccion;
 		return this.http.get(url).map(res => res.json());
 	}
-	getFormulario(id_curso,id_etapa,url_formulario){
-		let url = URL_SERVICIOS + 'usuario/formularioIonic/'+id_curso+"/"+id_etapa+"/"+url_formulario;
-		return this.http.get(url).map(res => res.json());
+	getFormulario(id_curso,id_etapa,url_formulario,token){
+		let url = URL_SERVICIOS + 'usuario/formulario/'+id_curso+"/"+id_etapa+"/"+url_formulario;
+		let headers = new Headers({'Content-Type':'application/json','Authorization': this.geToken(JSON.stringify(token))});
+		let options = new RequestOptions({headers: headers});
+		return this.http.get(url, options).map(res => res.json());
+	}
+
+	geToken(token){
+		return token;
 	}
 }

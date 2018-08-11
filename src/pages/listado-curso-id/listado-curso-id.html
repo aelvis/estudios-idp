@@ -31,7 +31,7 @@
 
   <ion-list *ngSwitchCase="'formularios'">
     <ion-item *ngFor="let formu of formularios" 
-    [navParams]="{curso: etapa_curso.url_curso, id: etapa.url_etapa_curso, url: formu.url_formulario}" 
+    [navParams]="{curso: etapa_curso.url_curso, id: etapa.url_etapa_curso, url: formu.url_formulario, token: token}" 
     [navPush]="formularioPage">
         {{formu.nombre_formulario}}
     </ion-item>

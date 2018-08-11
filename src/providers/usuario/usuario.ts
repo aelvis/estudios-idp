@@ -52,12 +52,12 @@ export class UsuarioService {
   private guardar_session_token(){
   	if(this.platform.is("cordova")){
   		//celular
-  		if(this.identity){
+  		if(this.token){
   			this.storage.set("token", this.token);
   		}
   	}else{	
   		//desktop
-  		if(this.identity){
+  		if(this.token){
   			localStorage.setItem("token", this.token);
   		}else{
   			localStorage.removeItem("token");
@@ -93,7 +93,7 @@ export class UsuarioService {
 	  		});
 	  	}else{
 	  		if(localStorage.getItem("token")){
-	  			this.token = JSON.parse(localStorage.getItem("token"));
+	  			this.token = localStorage.getItem("token");
 	  		}
 	  		resolve();
 	  	}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CursoService } from '../../providers/curso/curso';
 import { CursoPage } from '../index.paginas';
@@ -12,6 +12,8 @@ export class HomePage {
   cursos:any[] = [];
   cursosprueba:any[] = [];
   total:any[] = [];
+  token;
+  identity;
   constructor(public navCtrl: NavController, private _cs: CursoService, private _usu: UsuarioService) {
   }
   ionViewWillEnter(){

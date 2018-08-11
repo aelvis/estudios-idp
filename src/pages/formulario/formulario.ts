@@ -7,16 +7,21 @@ import { CursoService } from '../../providers/curso/curso'
   templateUrl: 'formulario.html',
 })
 export class FormularioPage {
-  form_datos:any[] = [];
+  datos:any[] = [];
+  formulario:any[] = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, private _cs: CursoService) {
+  console.log(this.navParams.get("token"));
   }
   ionViewWillEnter(){
-    this._cs.getFormulario(this.navParams.get("curso"),this.navParams.get("id"),this.navParams.get("url")).subscribe( 
+    this._cs.getFormulario(this.navParams.get("curso"),this.navParams.get("id"),this.navParams.get("url"),this.navParams.get("token")).subscribe( 
         data => { 
-          if(data.error){
+          if(data.preguntas.error){
         }else{
-            this.form_datos = data.datos;
-            console.log(this.form_datos);
+            this.datos = data.preguntas.datos;
+            this.formulario = data.preguntas.formulario;
+            console.log(this.datos);
+            console.log(this.formulario);
           }
-    } );  }
+    });  
+  }
 }

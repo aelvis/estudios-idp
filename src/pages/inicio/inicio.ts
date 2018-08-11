@@ -9,7 +9,9 @@ export class InicioPage {
   pet: string = "login";
   correo: string = "";
   password: string = "";
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _usu: UsuarioService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _usu: UsuarioService) {
   }
   ingresar(){
   	this._usu.ingresar(this.correo, this.password).subscribe(()=>{
