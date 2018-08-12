@@ -10,15 +10,15 @@ export class FormularioPage {
   datos:any[] = [];
   formulario:any[] = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, private _cs: CursoService) {
-  console.log(this.navParams.get("token"));
   }
   ionViewWillEnter(){
-    this._cs.getFormulario(this.navParams.get("curso"),this.navParams.get("id"),this.navParams.get("url"),this.navParams.get("token")).subscribe( 
+    this._cs.getFormulario(this.navParams.get("curso"),this.navParams.get("id"),this.navParams.get("url")).subscribe( 
         data => { 
-          if(data.preguntas.error){
+          console.log(data);
+          if(data.error){
         }else{
-            this.datos = data.preguntas.datos;
-            this.formulario = data.preguntas.formulario;
+            this.datos = data.datos;
+            this.formulario = data.formulario;
             console.log(this.datos);
             console.log(this.formulario);
           }
