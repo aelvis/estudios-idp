@@ -9,10 +9,19 @@
 
 <ion-content padding>
 	<h1 style="text-align: center">{{_cs.pregunta_id.nombre_pregunta}}</h1>
-	<ion-item>
-		<ion-label floating>Agregar Respuesta</ion-label>
-		<ion-textarea  [(ngModel)]="descripcion"></ion-textarea>
-	</ion-item>
-	<button ion-button block [disabled]="descripcion.length < 5" (click)="ingresar(_cs.curso_id.url_curso,_cs.etapa_id.url_etapa_curso,_cs.formulario_id.url_formulario,_cs.pregunta_id.id_formulario_pregunta)">Ingresar
-	</button>
+	<div *ngIf="_cs.itemsd_id === 'false'">
+		<p>Su pregunta fue enviada, su calificación puede demorar un poco</p>
+	</div>
+	<div *ngIf="_cs.itemsd_id === 'true'">
+		<ion-item>
+			<ion-label floating>Agregar Respuesta</ion-label>
+			<ion-textarea  [(ngModel)]="descripcion"></ion-textarea>
+		</ion-item>
+		<button ion-button block [disabled]="descripcion.length < 5" (click)="ingresar(_cs.curso_id.url_curso,_cs.etapa_id.url_etapa_curso,_cs.formulario_id.url_formulario,_cs.pregunta_id.id_formulario_pregunta)">Ingresar
+		</button>
+		<div *ngIf="_cs.respuesta_pregunta != 'success'">
+			<p>{{_cs.mensaje_pregunta}}</p>
+		</div>	
+	</div>
+
 </ion-content>

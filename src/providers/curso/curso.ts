@@ -18,6 +18,9 @@ export class CursoService {
   curso_id:any[] = [];
   etapa_id:any[] = [];
   formulario_id:any[] = [];
+  respuesta_pregunta:any[] = [];
+  mensaje_pregunta:any[] = [];
+  itemsd_id: string = "true";
   constructor(public http: Http, private platform: Platform, private storage: Storage) {
   }
     getTokenDesktop(){
@@ -122,6 +125,10 @@ export class CursoService {
 			          if(data.error){
 			        	}else{
 			            this.pregunta_id = data.pregunta;
+			       this.curso_id = data.curso;
+			       this.etapa_id = data.etapa;
+			       this.formulario_id = data.formulario;
+			       this.itemsd_id  = "true";
 			          }
 			    });  
 	  		});
@@ -136,11 +143,12 @@ export class CursoService {
 			       this.curso_id = data.curso;
 			       this.etapa_id = data.etapa;
 			       this.formulario_id = data.formulario;
+			       this.itemsd_id  = "true";
 			    }
     		}); 
 		}
 	}
-	register(descripcion:string,id_curso,id_etapa,url_formulario,id_formulario){
+	register(descripcion:string,id_curso:string,id_etapa:string,url_formulario:string,id_formulario:string){
 		let url = URL_SERVICIOS + 'usuario/registroPreguntaIonic/'+id_curso+"/"+id_etapa+"/"+url_formulario+"/"+id_formulario;
 		let datas = new URLSearchParams();
   		datas.append("descripcion", descripcion);
@@ -148,19 +156,38 @@ export class CursoService {
 			this.storage.get("token").then((token) => {
 				let headers = new Headers({'Content-Type':'application/json','Authorization': token});
 				let options = new RequestOptions({headers: headers});
-				return this.http.post(url,datas, options).map(res => res.json()).subscribe( 
-			        data => { 
-			          if(data.error){
-			        	}else{
-			            //this.respuesta_pregunta = data.pregunta;
-			          }
-			    });  
+				return this.http.post(url, datas, options).map(res => res.json()).subscribe( 
+		        data => { 
+		        if(data.error){
+			    }else{
+			    	if(data.codigo = 'success'){
+						this.respuesta_pregunta = data.codigo;
+			       		this.mensaje_pregunta = data.msg;
+			       		this.itemsd_id  = "false";
+			    	}else{
+			    		this.respuesta_pregunta = data.codigo;
+			       		this.mensaje_pregunta = data.msg;
+			    	}
+			    }
+    		}); 
 	  		});
 		}else{
 			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenDesktop()});
 			let options = new RequestOptions({headers: headers});
-			console.log(options);
-			return this.http.post(url, datas, options).map(res => { let data =  res.json()}); 
+			return this.http.post(url, datas, options).map(res => res.json()).subscribe( 
+		        data => { 
+		        if(data.error){
+			    }else{
+			    	if(data.codigo = 'success'){
+						this.respuesta_pregunta = data.codigo;
+			       		this.mensaje_pregunta = data.msg;
+			       		this.itemsd_id  = "false";
+			    	}else{
+			    		this.respuesta_pregunta = data.codigo;
+			       		this.mensaje_pregunta = data.msg;
+			    	}
+			    }
+    		}); 
 		}
 	}
 }
