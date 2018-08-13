@@ -44,14 +44,11 @@ export class CursoService {
 				return this.http.get(url, options)
 				.map(res => res.json()).subscribe( 
         data => { 
-          console.log("Hola "+ data);
           if(data.error){
             console.log(data.error);
         }else{
             this.datos = data.datos;
             this.formulario = data.formulario;
-            console.log(this.datos);
-            console.log(this.formulario);
           }
     }, err => {
             console.error(err)
@@ -63,14 +60,11 @@ export class CursoService {
 			let options = new RequestOptions({headers: headers});
 			return this.http.get(url, options).map(res => res.json()).subscribe( 
         data => { 
-          console.log("Hola "+ data);
           if(data.error){
             console.log(data.error);
         }else{
             this.datos = data.datos;
             this.formulario = data.formulario;
-            console.log(this.datos);
-            console.log(this.formulario);
           }
     }, err => {
             console.error(err)
