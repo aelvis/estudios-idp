@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { CursoService } from '../../providers/curso/curso'
 
 @Component({
   selector: 'page-formulario-respuesta-ver',
@@ -7,11 +8,9 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class FormularioRespuestaVerPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _cs: CursoService) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FormularioRespuestaVerPage');
+  ionViewWillEnter(){
+    this._cs.getRespuestaVer(this.navParams.get("curso"),this.navParams.get("etapa"),this.navParams.get("formulario"),this.navParams.get("url"));
   }
-
 }

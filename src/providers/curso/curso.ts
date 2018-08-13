@@ -7,11 +7,24 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class CursoService {
-	token;
-	  datos:any[] = [];
+  token;
+  datos:any[] = [];
   formulario:any[] = [];
+  curso:any[] = [];
+  etapa:any[] = [];
+  pregunta:any[] = [];
+  respuesta:any[] = [];
+  pregunta_id:any[] = [];
   constructor(public http: Http, private platform: Platform, private storage: Storage) {
   }
+    getTokenDesktop(){
+	    if(localStorage.getItem('token') != "undefined"){
+	        this.token = localStorage.getItem('token');
+	    }else{
+	        this.token = null;
+	    }
+	    return this.token;
+	}
 	getCursos(){
 		let url = URL_SERVICIOS + 'usuario/listadoCursosIonic/';
 		return this.http.get(url).map(res => res.json());
@@ -32,7 +45,6 @@ export class CursoService {
 		let url = URL_SERVICIOS + 'usuario/listadoCursosIdUrlLeccionListaIonic/'+id_curso+"/"+id_etapa+"/"+url_leccion+"/"+url_etapa_leccion;
 		return this.http.get(url).map(res => res.json());
 	}
-
 	getFormulario(id_curso,id_etapa,url_formulario){
 		let url = URL_SERVICIOS + 'usuario/formulario/'+id_curso+"/"+id_etapa+"/"+url_formulario;
 		if(this.platform.is("cordova")){
@@ -41,17 +53,17 @@ export class CursoService {
 					'Content-Type':'application/json',
 					'Authorization': token});
 				let options = new RequestOptions({headers: headers});
-				return this.http.get(url, options)
-				.map(res => res.json()).subscribe( 
+				return this.http.get(url, options).map(res => res.json()).subscribe( 
 			        data => { 
 			          if(data.error){
 			        }else{
-			            this.datos = data.datos;
-			            this.formulario = data.formulario;
-			          }
+				        this.datos = data.datos;
+				        this.formulario = data.formulario;
+				        this.curso = data.curso.url_curso;
+				        this.etapa = data.etapa.url_etapa_curso;
+			        }
 			    });  
 	  		});
-
 		}else{
 			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenDesktop()});
 			let options = new RequestOptions({headers: headers});
@@ -61,17 +73,66 @@ export class CursoService {
 			    }else{
 			        this.datos = data.datos;
 			        this.formulario = data.formulario;
+			        this.curso = data.curso.url_curso;
+			        this.etapa = data.etapa.url_etapa_curso;
 			    }
     		}); 			
 		}
-
 	}
-  public getTokenDesktop(){
-      if(localStorage.getItem('token') != "undefined"){
-        this.token = localStorage.getItem('token');
-      }else{
-        this.token = null;
-      }
-       return this.token;
-  }
+	getRespuestaVer(id_curso,id_etapa,url_formulario,id_formulario){
+		let url = URL_SERVICIOS + 'usuario/formularioIdRespuesta/'+id_curso+"/"+id_etapa+"/"+url_formulario+"/"+id_formulario;
+		if(this.platform.is("cordova")){
+			console.log(url);
+			this.storage.get("token").then((token) => {
+				let headers = new Headers({'Content-Type':'application/json','Authorization': token});
+				let options = new RequestOptions({headers: headers});
+				return this.http.get(url, options).map(res => res.json()).subscribe( 
+			        data => { 
+			          if(data.error){
+			        	}else{
+			            	this.pregunta = data.pregunta;
+			        		this.respuesta = data.respuesta;
+			          }
+			    });  
+	  		});
+		}else{
+			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenDesktop()});
+			let options = new RequestOptions({headers: headers});
+			return this.http.get(url, options).map(res => res.json()).subscribe( 
+		        data => { 
+		        if(data.error){
+			    }else{
+			        this.pregunta = data.pregunta;
+			        this.respuesta = data.respuesta;
+			    }
+    		}); 
+		}
+	}
+	getRespuesta(id_curso,id_etapa,url_formulario,id_formulario){
+		let url = URL_SERVICIOS + 'usuario/formularioId/'+id_curso+"/"+id_etapa+"/"+url_formulario+"/"+id_formulario;
+		if(this.platform.is("cordova")){
+			console.log(url);
+			this.storage.get("token").then((token) => {
+				let headers = new Headers({'Content-Type':'application/json','Authorization': token});
+				let options = new RequestOptions({headers: headers});
+				return this.http.get(url, options).map(res => res.json()).subscribe( 
+			        data => { 
+			          if(data.error){
+			        	}else{
+			            this.pregunta_id = data.pregunta;
+			          }
+			    });  
+	  		});
+		}else{
+			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenDesktop()});
+			let options = new RequestOptions({headers: headers});
+			return this.http.get(url, options).map(res => res.json()).subscribe( 
+		        data => { 
+		        if(data.error){
+			    }else{
+			       this.pregunta_id = data.pregunta;
+			    }
+    		}); 
+		}
+	}
 }

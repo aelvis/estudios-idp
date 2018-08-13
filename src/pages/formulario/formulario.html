@@ -2,17 +2,21 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>asd</ion-title>
+    <ion-title>{{_cs.datos.nombre_formulario}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<h3 style="text-align: center;">asd</h3>
+	<h3 style="text-align: center;">{{_cs.datos.nombre_formulario}}</h3>
 	<div *ngFor="let item of _cs.formulario">
 		<p>{{item.nombre_pregunta}}</p>
-		<div *ngIf="item.respuesta"><button color="primary" ion-button block>Ver</button></div>
-		<div *ngIf="item.respuesta === null"><button color="danger" ion-button block>Responder</button></div>
+		<div *ngIf="item.respuesta" 
+			[navParams]="{curso: _cs.curso, etapa: _cs.etapa, formulario: _cs.datos.url_formulario, url: item.id_formulario_pregunta}" 
+			[navPush]="formularioRespuestaVerPage"><button color="primary" ion-button block>Ver</button></div>
+		<div *ngIf="item.respuesta === null" 
+			[navParams]="{curso: _cs.curso, etapa: _cs.etapa, formulario: _cs.datos.url_formulario, url: item.id_formulario_pregunta}"
+			[navPush]="formularioRespuestaPage"><button color="danger" ion-button block>Responder</button></div>
 	</div>
 </ion-content>

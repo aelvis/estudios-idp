@@ -7,12 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>formulario-respuesta-ver</ion-title>
+    <ion-title>{{_cs.pregunta.nombre_pregunta}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+	<h1 style="text-align: center">{{_cs.pregunta.nombre_pregunta}}</h1>
+	<p>Respuesta: {{_cs.respuesta.respuesta}}</p>
+	<p>Nota: {{_cs.respuesta.nota}}</p>
+	<p>Informe: {{_cs.respuesta.informe}}</p>
 </ion-content>
