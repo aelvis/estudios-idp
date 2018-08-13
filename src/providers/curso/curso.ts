@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
 import { Storage } from '@ionic/storage';
+
 @Injectable()
 export class CursoService {
 	token;
+	  datos:any[] = [];
+  formulario:any[] = [];
   constructor(public http: Http, private platform: Platform, private storage: Storage) {
   }
 	getCursos(){
@@ -33,13 +36,45 @@ export class CursoService {
 	getFormulario(id_curso,id_etapa,url_formulario){
 		let url = URL_SERVICIOS + 'usuario/formulario/'+id_curso+"/"+id_etapa+"/"+url_formulario;
 		if(this.platform.is("cordova")){
-			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenPhone()});
-			let options = new RequestOptions({headers: headers});
-			return this.http.get(url, options).map(res => res.json());		
+			this.storage.get("token").then((token) => {
+				let headers = new Headers({
+					'Content-Type':'application/json',
+					'Authorization': token});
+				let options = new RequestOptions({headers: headers});
+				return this.http.get(url, options)
+				.map(res => res.json()).subscribe( 
+        data => { 
+          console.log("Hola "+ data);
+          if(data.error){
+            console.log(data.error);
+        }else{
+            this.datos = data.datos;
+            this.formulario = data.formulario;
+            console.log(this.datos);
+            console.log(this.formulario);
+          }
+    }, err => {
+            console.error(err)
+        });  
+	  		});
+
 		}else{
 			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenDesktop()});
 			let options = new RequestOptions({headers: headers});
-			return this.http.get(url, options).map(res => res.json());			
+			return this.http.get(url, options).map(res => res.json()).subscribe( 
+        data => { 
+          console.log("Hola "+ data);
+          if(data.error){
+            console.log(data.error);
+        }else{
+            this.datos = data.datos;
+            this.formulario = data.formulario;
+            console.log(this.datos);
+            console.log(this.formulario);
+          }
+    }, err => {
+            console.error(err)
+        });  			
 		}
 
 	}
@@ -51,7 +86,7 @@ export class CursoService {
       }
        return this.token;
   }
-  public async getTokenPhone(){
+  /*public async getTokenPhone(){
       let token =  await this.storage.get('token');
       if(token != "null"){
           this.token =  token;
@@ -59,5 +94,5 @@ export class CursoService {
           this.token = null
       }
           return this.token;
-  }
+  }*/
 }

@@ -10,7 +10,7 @@
 
 <ion-content padding>
 	<h3 style="text-align: center;">asd</h3>
-	<div *ngFor="let item of formulario">
+	<div *ngFor="let item of _cs.formulario">
 		<p>{{item.nombre_pregunta}}</p>
 		<div *ngIf="item.respuesta"><button color="primary" ion-button block>Ver</button></div>
 		<div *ngIf="item.respuesta === null"><button color="danger" ion-button block>Responder</button></div>
