@@ -9,6 +9,10 @@
 
 <ion-content padding>
 	<h1 style="text-align: center">{{_cs.pregunta_id.nombre_pregunta}}</h1>
-	<ion-item><ion-label floating>Agregar Respuesta</ion-label><ion-textarea name="description"></ion-textarea></ion-item>
-  </ion-item>
+	<ion-item>
+		<ion-label floating>Agregar Respuesta</ion-label>
+		<ion-textarea  [(ngModel)]="descripcion"></ion-textarea>
+	</ion-item>
+	<button ion-button block [disabled]="descripcion.length < 5" (click)="ingresar()">Ingresar
+	</button>
 </ion-content>
