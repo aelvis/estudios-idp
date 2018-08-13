@@ -12,7 +12,7 @@ export class FormularioPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private _cs: CursoService) {
   }
   ionViewWillEnter(){
-    
-    this._cs.getFormulario(this.navParams.get("curso"),this.navParams.get("id"),this.navParams.get("url"))
+
+    this._cs.getFormulario(this.navParams.get("curso"),this.navParams.get("id"),this.navParams.get("url"));
   }
 }

@@ -43,32 +43,26 @@ export class CursoService {
 				let options = new RequestOptions({headers: headers});
 				return this.http.get(url, options)
 				.map(res => res.json()).subscribe( 
-        data => { 
-          if(data.error){
-            console.log(data.error);
-        }else{
-            this.datos = data.datos;
-            this.formulario = data.formulario;
-          }
-    }, err => {
-            console.error(err)
-        });  
+			        data => { 
+			          if(data.error){
+			        }else{
+			            this.datos = data.datos;
+			            this.formulario = data.formulario;
+			          }
+			    });  
 	  		});
 
 		}else{
 			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenDesktop()});
 			let options = new RequestOptions({headers: headers});
 			return this.http.get(url, options).map(res => res.json()).subscribe( 
-        data => { 
-          if(data.error){
-            console.log(data.error);
-        }else{
-            this.datos = data.datos;
-            this.formulario = data.formulario;
-          }
-    }, err => {
-            console.error(err)
-        });  			
+		        data => { 
+		        if(data.error){
+			    }else{
+			        this.datos = data.datos;
+			        this.formulario = data.formulario;
+			    }
+    		}); 			
 		}
 
 	}
@@ -80,13 +74,4 @@ export class CursoService {
       }
        return this.token;
   }
-  /*public async getTokenPhone(){
-      let token =  await this.storage.get('token');
-      if(token != "null"){
-          this.token =  token;
-      }else{
-          this.token = null
-      }
-          return this.token;
-  }*/
 }
