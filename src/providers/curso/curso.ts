@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
@@ -15,6 +15,9 @@ export class CursoService {
   pregunta:any[] = [];
   respuesta:any[] = [];
   pregunta_id:any[] = [];
+  curso_id:any[] = [];
+  etapa_id:any[] = [];
+  formulario_id:any[] = [];
   constructor(public http: Http, private platform: Platform, private storage: Storage) {
   }
     getTokenDesktop(){
@@ -111,7 +114,6 @@ export class CursoService {
 	getRespuesta(id_curso,id_etapa,url_formulario,id_formulario){
 		let url = URL_SERVICIOS + 'usuario/formularioId/'+id_curso+"/"+id_etapa+"/"+url_formulario+"/"+id_formulario;
 		if(this.platform.is("cordova")){
-			console.log(url);
 			this.storage.get("token").then((token) => {
 				let headers = new Headers({'Content-Type':'application/json','Authorization': token});
 				let options = new RequestOptions({headers: headers});
@@ -131,8 +133,34 @@ export class CursoService {
 		        if(data.error){
 			    }else{
 			       this.pregunta_id = data.pregunta;
+			       this.curso_id = data.curso;
+			       this.etapa_id = data.etapa;
+			       this.formulario_id = data.formulario;
 			    }
     		}); 
+		}
+	}
+	register(descripcion:string,id_curso,id_etapa,url_formulario,id_formulario){
+		let url = URL_SERVICIOS + 'usuario/registroPreguntaIonic/'+id_curso+"/"+id_etapa+"/"+url_formulario+"/"+id_formulario;
+		let datas = new URLSearchParams();
+  		datas.append("descripcion", descripcion);
+		if(this.platform.is("cordova")){
+			this.storage.get("token").then((token) => {
+				let headers = new Headers({'Content-Type':'application/json','Authorization': token});
+				let options = new RequestOptions({headers: headers});
+				return this.http.post(url,datas, options).map(res => res.json()).subscribe( 
+			        data => { 
+			          if(data.error){
+			        	}else{
+			            //this.respuesta_pregunta = data.pregunta;
+			          }
+			    });  
+	  		});
+		}else{
+			let headers = new Headers({'Content-Type':'application/json','Authorization': this.getTokenDesktop()});
+			let options = new RequestOptions({headers: headers});
+			console.log(options);
+			return this.http.post(url, datas, options).map(res => { let data =  res.json()}); 
 		}
 	}
 }

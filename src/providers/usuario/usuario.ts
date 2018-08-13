@@ -25,23 +25,23 @@ export class UsuarioService {
   	data.append("correo", correo);
   	data.append("password", password);
   	let url = URL_SERVICIOS + 'auth/loginIonic/';
-  	return this.http.post(url,data).map(res => {
-  		let data_rest = res.json();
-  		if(data_rest.error){
-  			this.alertCtrl.create({
-  				title:"Error al Iniciar",
-  				subTitle: data_rest.error.msg,
-  				buttons: ["OK"]
-  			}).present();
-  		}else{
-  			this.token  = data_rest.usuario.token;
-  			this.identity  = data_rest.usuario.datos;
+  	  return this.http.post(url,data).map(res => {
+    		let data_rest = res.json();
+    		if(data_rest.error){
+    			this.alertCtrl.create({
+    				title:"Error al Iniciar",
+    				subTitle: data_rest.error.msg,
+    				buttons: ["OK"]
+    			}).present();
+    		}else{
+    			this.token  = data_rest.usuario.token;
+    			this.identity  = data_rest.usuario.datos;
 
-  			//GUARDAR DATOS STORAGE  			
-			this.guardar_session_token();
-			this.guardar_session_identity();
-  		}
-  	});
+    			//GUARDAR DATOS STORAGE  			
+  			this.guardar_session_token();
+  			this.guardar_session_identity();
+    		}
+    	});
   }
   cerrar_sesion(){
   	this.token = null;
