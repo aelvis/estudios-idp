@@ -21,19 +21,19 @@ export class HomePage {
       data => { 
           if(data.error){
         }else{
-            let nuevaData = this.agrupar(data.curso, 2);
-            this.cursos =  nuevaData;
+            //let nuevaData = this.agrupar(data.curso, 2);
+            this.cursos =  data.curso;
             this.cursosprueba  = data.curso;
             this.total = data.total.id;
           }
         }  
     );
   }
-  private agrupar( arr: any, tamano: number){
+  /*private agrupar( arr: any, tamano: number){
       let nuevoArreglo = [];
       for( let i = 0; i<arr.length; i+=tamano){
         nuevoArreglo.push(arr.slice(i, i+tamano));
       }
       return nuevoArreglo;
-    }
+    }*/
 }

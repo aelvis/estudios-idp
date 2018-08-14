@@ -20,6 +20,35 @@ export class UsuarioService {
   		return false;
   	}
   }
+  /*register(nombre:string, correo:string, password:string,celular:string,codigo:string){
+    let params = new URLSearchParams();
+    params.append("nombre", nombre);
+    params.append("password", password);
+    params.append("correo", correo);
+    params.append("celular", celular);
+    params.append("codigo", codigo);
+    let url = URL_SERVICIOS + 'auth/registroLogin/';
+    return this.http.post(url, params).map(res => {
+        let data_report = res.json();
+        if(data_report.error){
+          this.alertCtrl.create({
+            title:"Error al Iniciar",
+            subTitle: data_report.error.msg,
+            buttons: ["OK"]
+          }).present();
+        }
+      });
+  }*/
+  register(nombre:string, correo:string, password:string,celular:string,codigo:string){
+    let params = new URLSearchParams();
+    params.append("nombre", nombre);
+    params.append("password", password);
+    params.append("correo", correo);
+    params.append("celular", celular);
+    params.append("codigo", codigo);
+    let url = URL_SERVICIOS + 'auth/registroLogin/';
+    return this.http.post(url, params).map(res => res.json());
+  }
   ingresar(correo:string, password:string){
   	let data = new URLSearchParams();
   	data.append("correo", correo);
@@ -36,7 +65,6 @@ export class UsuarioService {
     		}else{
     			this.token  = data_rest.usuario.token;
     			this.identity  = data_rest.usuario.datos;
-
     			//GUARDAR DATOS STORAGE  			
   			this.guardar_session_token();
   			this.guardar_session_identity();
@@ -54,7 +82,9 @@ export class UsuarioService {
   		//celular
   		if(this.token){
   			this.storage.set("token", this.token);
-  		}
+  		}else{
+        this.storage.remove("token");
+      }
   	}else{	
   		//desktop
   		if(this.token){

@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
 import { Storage } from '@ionic/storage';
-
+import { TRIPS } from './novedades';
 @Injectable()
 export class CursoService {
   token;
@@ -22,6 +22,7 @@ export class CursoService {
   mensaje_pregunta:any[] = [];
   itemsd_id: string = "true";
   constructor(public http: Http, private platform: Platform, private storage: Storage) {
+
   }
     getTokenDesktop(){
 	    if(localStorage.getItem('token') != "undefined"){

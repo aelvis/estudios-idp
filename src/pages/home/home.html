@@ -15,21 +15,19 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content fullscreen class="card-background-page">
   	<ion-grid *ngIf="_usu.activo()">
 	  	<ion-row *ngFor="let pares of cursos">
-		    <ion-col *ngFor="let item of pares" 
-		    [navParams]="{curso: item.url_curso}" [navPush]="cursoPage">
-		    	<img [src]="item.imagen | imagen">
-		    	<p>
-		    		{{item.nombre_curso}}
-		    	<br>
-		    		{{item.des}}
-		    	<br>
-		    		{{item.tag}}
-		    	</p>
-		    </ion-col>
+		    <ion-card [navParams]="{curso: pares.url_curso}" [navPush]="cursoPage">
+		    	<img [src]="pares.imagen | imagen">
+			    <div class="card-title">{{pares.nombre_curso}}</div>
+			    <div class="card-subtitle">{{pares.des}}</div>
+			  </ion-card>
 	  	</ion-row>
 	</ion-grid>
 	<p *ngIf="_usu.activo() === false">Realizar Login</p>
+
+<div *ngIf="_usu.activo()">
+
+</div>
 </ion-content>

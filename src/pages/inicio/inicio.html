@@ -1,54 +1,45 @@
-<ion-header>
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content" *ngIf="_usu.activo() === false">
 
-  <ion-navbar>
-    <ion-title>Bienvenidos</ion-title>
-  </ion-navbar>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h2 ion-text class="text-primary">
+        <strong>Iglesia de Dios</strong> de la Profecia
+      </h2>
+    </div>
 
-</ion-header>
-<ion-content>
-	<div *ngIf="_usu.activo() === false">
-		<ion-toolbar>
-		    <ion-segment [(ngModel)]="pet">
-		      	<ion-segment-button value="login">
-		        	Login
-		      	</ion-segment-button>
-		      	<ion-segment-button value="registro">
-		         	Registro
-		      	</ion-segment-button>
-	    	</ion-segment>
-	  	</ion-toolbar>	
-		<div [ngSwitch]="pet" padding>
-		  <ion-list *ngSwitchCase="'login'">
-		  	<h3 style="text-align: center">Login</h3>
-			  <ion-item>
-			    <ion-label fixed>Correo</ion-label>
-			    <ion-input type="email" [(ngModel)]="correo"></ion-input>
-			  </ion-item>
+    <!-- Login form -->
+    <div class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" [(ngModel)]="correo"></ion-input>
+      </ion-item>
 
-			  <ion-item>
-			    <ion-label fixed>Contraseña</ion-label>
-			    <ion-input type="password" [(ngModel)]="password"></ion-input>
-			  </ion-item>
-			  <button ion-button block [disabled]=" correo.length < 5 || password.length < 5" (click)="ingresar()">
-			  		Ingresar
-			  </button>
-		  </ion-list>
-		  <ion-list *ngSwitchCase="'registro'">
-		  	<h3 style="text-align: center">Registro</h3>
-			  <ion-item>
-			    <ion-label fixed>Username</ion-label>
-			    <ion-input type="text" value=""></ion-input>
-			  </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </div>
+    <div>
+      <button ion-button icon-start block color="dark" tappable [disabled]=" correo.length < 5 || password.length < 5" (click)="ingresar()">
+        <ion-icon name="log-in"></ion-icon>
+        INGRESAR
+      </button>
 
-			  <ion-item>
-			    <ion-label fixed>Password</ion-label>
-			    <ion-input type="password"></ion-input>
-			  </ion-item>
-
-		  </ion-list>
-		</div>  
-	</div>
-	<div *ngIf="_usu.activo() === true">
-		<p>Esta logueado</p>
-	</div>	
+    </div>
+    <div text-center margin-top>
+      <span ion-text color="secondary" tappable (click)="register()">No tienes una cuenta? <strong>Registrarse</strong></span>
+    </div>
+  </div>
+  <div *ngIf="_usu.activo() === true">
+    <p>Esta logueado</p>
+  </div>
 </ion-content>

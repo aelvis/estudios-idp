@@ -17,6 +17,7 @@ export class CursoPage {
   ionViewWillEnter(){
   	this._cs.getListadoCursosId(this.navParams.get("curso")).subscribe( 
         data => { 
+          console.log(data);
           if(data.error){
         }else{
             this.listaCurso = data.cursos;

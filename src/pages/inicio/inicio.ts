@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { UsuarioService } from '../../providers/usuario/usuario'
+import { UsuarioService } from '../../providers/usuario/usuario';
+import { RegistroPage } from '../index.paginas';
 @Component({
   selector: 'page-inicio',
   templateUrl: 'inicio.html',
@@ -16,5 +17,8 @@ export class InicioPage {
   ingresar(){
   	this._usu.ingresar(this.correo, this.password).subscribe(()=>{
   	});
+  }
+  register() {
+    this.navCtrl.setRoot(RegistroPage);
   }
 }

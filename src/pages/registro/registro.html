@@ -1,18 +1,61 @@
-<!--
-  Generated template for the RegistroPage page.
+<!-- -->
+<ion-content class="auth-page">
+  <div class="login-content" *ngIf="_usu.activo() === false">
+    <div class="list-form">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Nombre Completo
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+          Email
+        </ion-label>
+        <ion-input type="email" [(ngModel)]="correo"></ion-input>
+      </ion-item>
 
-  <ion-navbar>
-    <ion-title>registro</ion-title>
-  </ion-navbar>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
 
-</ion-header>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Celular
+        </ion-label>
+        <ion-input type="tel" [(ngModel)]="celular"></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Codigo Iglesia
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="codigo"></ion-input>
+      </ion-item>
+    </div>
 
-<ion-content padding>
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="register()" [disabled]=" nombre.length < 5 || password.length < 5 || password.celular < 8 || password.codigo < 8">
+       Registrarse
+      </button>
+    </div>
 
+    <!-- Other links -->
+    <div text-center margin-top>
+      <span ion-text color="primary" tappable (click)="login()">Ya tengo una cuenta</span>
+    </div>
+
+  </div>
+    <div *ngIf="_usu.activo() === true">
+    <p>Esta logueado</p>
+  </div>
 </ion-content>
