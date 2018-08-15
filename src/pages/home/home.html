@@ -2,16 +2,19 @@
   <ion-navbar>
     <ion-buttons left>
 		<button ion-button icon-only *ngIf="_usu.activo()" (click)="_usu.cerrar_sesion()">
-			<ion-icon color="danger" name="log-out"></ion-icon>
+			<ion-icon name="log-out"></ion-icon>
 		</button>
     </ion-buttons>
     <ion-title style="text-align: center;">
       Bienvenidos
     </ion-title> 
     <ion-buttons right>
-		<button ion-button icon-only *ngIf="_usu.activo()">
-			<ion-icon color="danger" name="contact"></ion-icon>
+    	<div *ngIf="_usu.identity.role == 'TEACHER'">
+    		<button ion-button icon-only  [navPush]="alumnosPage">
+			<ion-icon name="easel"></ion-icon>
 		</button>
+    	</div>
+		
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -27,7 +30,4 @@
 	</ion-grid>
 	<p *ngIf="_usu.activo() === false">Realizar Login</p>
 
-<div *ngIf="_usu.activo()">
-
-</div>
 </ion-content>

@@ -1,24 +1,18 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AlumnosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { AlumnoService } from '../../providers/index.services';
+import { ListadoAlumnosFormulariosPage } from '../index.paginas';
 @Component({
   selector: 'page-alumnos',
   templateUrl: 'alumnos.html',
 })
 export class AlumnosPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	listadoAlumnosFormulariosPage = ListadoAlumnosFormulariosPage;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _alumnos: AlumnoService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AlumnosPage');
+  ionViewWillEnter(){
+  	this._alumnos.getListaAlumnos();
   }
 
 }

@@ -20,25 +20,6 @@ export class UsuarioService {
   		return false;
   	}
   }
-  /*register(nombre:string, correo:string, password:string,celular:string,codigo:string){
-    let params = new URLSearchParams();
-    params.append("nombre", nombre);
-    params.append("password", password);
-    params.append("correo", correo);
-    params.append("celular", celular);
-    params.append("codigo", codigo);
-    let url = URL_SERVICIOS + 'auth/registroLogin/';
-    return this.http.post(url, params).map(res => {
-        let data_report = res.json();
-        if(data_report.error){
-          this.alertCtrl.create({
-            title:"Error al Iniciar",
-            subTitle: data_report.error.msg,
-            buttons: ["OK"]
-          }).present();
-        }
-      });
-  }*/
   register(nombre:string, correo:string, password:string,celular:string,codigo:string){
     let params = new URLSearchParams();
     params.append("nombre", nombre);
@@ -98,7 +79,7 @@ export class UsuarioService {
   	if(this.platform.is("cordova")){
   		//celular
   		if(this.identity){
-  			this.storage.set("identity", JSON.stringify(this.identity));
+  			this.storage.set("identity", this.identity);
   		}
   	}else{	
   		//desktop

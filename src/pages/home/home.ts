@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CursoService } from '../../providers/curso/curso';
-import { CursoPage } from '../index.paginas';
+import { CursoPage, AlumnosPage } from '../index.paginas';
 import { UsuarioService } from '../../providers/usuario/usuario';
+import { Platform } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -12,28 +14,18 @@ export class HomePage {
   cursos:any[] = [];
   cursosprueba:any[] = [];
   total:any[] = [];
-  token;
-  identity;
-  constructor(public navCtrl: NavController, private _cs: CursoService, private _usu: UsuarioService) {
+  alumnosPage = AlumnosPage;
+  constructor(public navCtrl: NavController, private _cs: CursoService, private _usu: UsuarioService,private storage: Storage, private platform: Platform) {
   }
   ionViewWillEnter(){
+    console.log(this._usu.identity.role);
     this._cs.getCursos().subscribe(
       data => { 
           if(data.error){
         }else{
-            //let nuevaData = this.agrupar(data.curso, 2);
             this.cursos =  data.curso;
-            this.cursosprueba  = data.curso;
-            this.total = data.total.id;
           }
         }  
     );
   }
-  /*private agrupar( arr: any, tamano: number){
-      let nuevoArreglo = [];
-      for( let i = 0; i<arr.length; i+=tamano){
-        nuevoArreglo.push(arr.slice(i, i+tamano));
-      }
-      return nuevoArreglo;
-    }*/
 }

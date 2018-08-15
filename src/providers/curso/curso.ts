@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 import { Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
 import { Storage } from '@ionic/storage';
-import { TRIPS } from './novedades';
 @Injectable()
 export class CursoService {
   token;

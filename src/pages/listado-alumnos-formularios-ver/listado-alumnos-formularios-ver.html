@@ -7,12 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>listado-alumnos-formularios-ver</ion-title>
+    <ion-title>listado alumnos formularios ver</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<ion-list *ngFor="let item of _alumnos.data_ver">
+  <p  [navParams]="{url_usuario_enviar: _alumnos.url_usuario_enviar_ver, url_formulario: _alumnos.url_formulario_enviar_ver, pregunta: item.id_respuesta_formulario}"
+			[navPush]="listadoAlumnosFormulariosVerIdPage">{{item.nombre_pregunta}}</p>
+</ion-list>
 </ion-content>

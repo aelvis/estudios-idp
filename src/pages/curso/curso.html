@@ -10,11 +10,14 @@
         Inicio
       </ion-segment-button>
       <ion-segment-button value="lecciones">
-         Lecciones
+         Listado
+      </ion-segment-button>
+      <ion-segment-button value="cronograma">
+         Cronograma
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-<div [ngSwitch]="pet" padding>
+<div [ngSwitch]="pet">
   <ion-list *ngSwitchCase="'inicio'">
     <img [src]="listaCurso_one.imagen | imagen">
 	<div padding>
@@ -23,9 +26,13 @@
   </ion-list>
   <ion-list *ngSwitchCase="'lecciones'">
     <ion-item *ngFor="let item of listaCurso" [navParams]="{curso: listaCurso_one.url_curso, id: item.url_etapa_curso}" [navPush]="listadoCursoIdPage">
-		<ion-icon name="arrow-dropright-circle" item-start></ion-icon>
+		<ion-icon name="copy" item-start></ion-icon>
 		{{item.titulo}}
 	</ion-item>
+  </ion-list>
+  <ion-list *ngSwitchCase="'cronograma'">
+      <div  [innerHTML]="safeHtml(listaCurso_one.cronograma)"></div>
+
   </ion-list>
 </div>
 </ion-content>
