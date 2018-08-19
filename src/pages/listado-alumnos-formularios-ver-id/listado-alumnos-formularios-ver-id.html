@@ -1,13 +1,39 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>listado-alumnos-formularios-ver-id</ion-title>
+    <ion-title>{{_alumnos.data_ver_id.nombre_pregunta}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<p><b>Pregunta:</b> {{_alumnos.data_ver_id.nombre_pregunta}}</p>
+<p>{{_alumnos.data_ver_id.nombre_pregunta}}</p>
 <p><b>Respuesta:</b> {{_alumnos.data_ver_id.respuesta}}</p>
+
+<div *ngIf="_alumnos.data_ver_id.nota && _alumnos.data_ver_id.informe">
+<p *ngIf="_alumnos.data_ver_id.nota == 2"><b>Nota:</b> Bueno</p>
+<p *ngIf="_alumnos.data_ver_id.nota == 0"><b>Nota:</b> Malo</p>	
+<p><b>Informe:</b> {{_alumnos.data_ver_id.informe}}</p>
+</div>
+<br>
+<div *ngIf="_alumnos.itemsd_id === 'true'">
+<ion-list *ngIf="!_alumnos.data_ver_id.nota && !_alumnos.data_ver_id.informe">
+	<ion-item>
+	  <ion-label>Nota</ion-label>
+	  <ion-select [(ngModel)]="nota">
+	    <ion-option value="2">Bueno</ion-option>
+	    <ion-option value="0">Malo</ion-option>
+	  </ion-select>
+	</ion-item>
+	<ion-item>
+	    <ion-label color="primary" floating>Informe</ion-label>
+	    <ion-input [(ngModel)]="informe"></ion-input>
+	 </ion-item>
+	<button ion-button block [disabled]="informe.length < 5 || nota.length < 1" (click)="ingresar(_alumnos.url_formulario_enviar_ver_id,_alumnos.url_usuario_enviar_ver_id,_alumnos.id_respuesta_formulario)">Ingresar
+			</button>
+</ion-list>
+</div>
+<p *ngIf="_alumnos.cod === 'success'">{{_alumnos.mensaje}}</p>
+<p *ngIf="_alumnos.cod === 'warning'">{{_alumnos.mensaje}}</p>
 </ion-content>
