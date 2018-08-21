@@ -65,7 +65,7 @@ export class UsuarioService {
       data => {
         if(data.mensaje.codigo == 'danger'){
           this.alertCtrl.create({
-            title:"Error al Iniciar",
+            title:"Error al Actualizar",
             subTitle: data.mensaje.msg,
             buttons: ["OK"]
           }).present();
