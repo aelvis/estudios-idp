@@ -9,7 +9,7 @@
       Bienvenidos
     </ion-title> 
     <ion-buttons right>
-    	<div *ngIf="_usu.identity.role == 'TEACHER'">
+    	<div *ngIf="_usu.identity?.role === 'TEACHER'">
     		<button ion-button icon-only  [navPush]="alumnosPage">
 			<ion-icon name="easel"></ion-icon>
 		</button>

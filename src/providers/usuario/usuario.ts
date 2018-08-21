@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { Http, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { AlertController, Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
@@ -9,6 +9,8 @@ import { Storage } from '@ionic/storage';
 export class UsuarioService {
   token;
   identity;
+  codigo;
+  mensaje;
   constructor(public http: Http, private alertCtrl: AlertController, private platform: Platform, private storage: Storage) {
 	this.getToken();
 	this.getIdentity();
@@ -51,6 +53,27 @@ export class UsuarioService {
   			this.guardar_session_identity();
     		}
     	});
+  }
+  actualizarUsuario(nombre:string, email:string, celular:string){
+    let url = URL_SERVICIOS + 'auth/update';
+    let params = new URLSearchParams();
+      params.append("nombre", nombre);
+      params.append("email", email);
+      params.append("celular", celular);
+    let headers = new Headers({'Content-Type':'application/json','Authorization': this.token});
+    return this.http.put(url, params, {headers: headers}).map(res => res.json()).subscribe(
+      data => {
+        if(data.mensaje.codigo == 'danger'){
+          this.alertCtrl.create({
+            title:"Error al Iniciar",
+            subTitle: data.mensaje.msg,
+            buttons: ["OK"]
+          }).present();
+        }else{
+          this.cerrar_sesion();
+        }
+      }
+      );
   }
   cerrar_sesion(){
   	this.token = null;
