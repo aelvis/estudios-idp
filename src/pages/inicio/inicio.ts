@@ -31,7 +31,7 @@ export class InicioPage {
   ingresar(){
   	this._usu.ingresar(this.correo, this.password).subscribe(()=>{
       if(this._usu.token != null){
-          this.navCtrl.push(HomePage);
+          this.navCtrl.setRoot(HomePage);
       }else{
 
       }

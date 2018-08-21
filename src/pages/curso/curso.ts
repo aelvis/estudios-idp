@@ -24,7 +24,6 @@ export class CursoPage {
             this.listaCurso = data.cursos;
             
             this.listaCurso_one = data.listado;
-            console.log(this.listaCurso_one);
           }
         } );
   }

@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
-import { Storage } from '@ionic/storage';
 import { UsuarioService } from '../index.services';
 @Injectable()
 export class AlumnoService {
@@ -22,7 +20,7 @@ export class AlumnoService {
   mensaje:any[] = [];
   id_respuesta_formulario:any[] = [];
   itemsd_id: string = "true";
-  constructor( public _usu:UsuarioService ,public http: Http, private platform: Platform, private storage: Storage) {
+  constructor( public _usu:UsuarioService ,public http: Http) {
   }
 	getListaAlumnos(){
 			let headers = new Headers({'Content-Type':'application/json','Authorization': this._usu.token});

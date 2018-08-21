@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color='primary'>
     <ion-title style="text-align: center;">
       Bienvenidos
     </ion-title> 
@@ -13,7 +13,7 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content fullscreen class="card-background-page">
+<ion-content fullscreen>
   	<ion-grid *ngIf="_usu.activo()">
 	  	<ion-row *ngFor="let pares of cursos">
 		    <ion-card [navParams]="{curso: pares.url_curso}" [navPush]="cursoPage">
@@ -23,6 +23,6 @@
 			  </ion-card>
 	  	</ion-row>
 	</ion-grid>
-	<p *ngIf="_usu.activo() === false">Realizar Login</p>
+	<ion-grid *ngIf="_usu.activo() === false"><p>Realizar Login</p></ion-grid>
 
 </ion-content>

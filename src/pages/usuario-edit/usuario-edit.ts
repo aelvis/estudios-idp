@@ -59,7 +59,7 @@ export class UsuarioEditPage {
   				this.codigo = false;
   				this.password = false;
   				this.email = true;
-  				this.navCtrl.push(InicioPage);
+  				this.navCtrl.setRoot(InicioPage);
   			}
   		});
   }

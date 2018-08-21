@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { UsuarioPage, InicioPage, LoginPage } from '../index.paginas';
-import { UsuarioService } from '../../providers/index.services';
 
 @Component({
   selector: 'page-tabs',
@@ -13,7 +12,7 @@ export class TabsPage {
 	tab3 = UsuarioPage;
 	tab4 = LoginPage;
 
-  constructor(private _cs: UsuarioService) {
+  constructor() {
   }
   ionViewWillEnter(){
 
