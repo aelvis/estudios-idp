@@ -53,26 +53,31 @@
           <ion-icon name="contact" item-start class="text-primary"></ion-icon>
           Nombre
         </ion-label>
-        <ion-input type="text" value="{{_usu.identity?.nombre}}" [(ngModel)]="nombre"></ion-input>
+        <ion-input type="text" value="{{nombre}}" [(ngModel)]="nombre"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Correo
         </ion-label>
-        <ion-input type="email" value="{{_usu.identity?.correo}}" [(ngModel)]="email"></ion-input>
+        <ion-input type="email" value="{{email}}" [(ngModel)]="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>
           <ion-icon name="call" item-start class="text-primary"></ion-icon>
           Celular
         </ion-label>
-        <ion-input type="tel" value="{{_usu.identity?.celular}}" [(ngModel)]="celular"></ion-input>
+        <ion-input type="tel" value="{{celular}}" [(ngModel)]="celular"></ion-input>
       </ion-item>
-      <button ion-button icon-start block color="dark" tappable [disabled]=" nombre.length < 5 || email.length < 5 || celular.length < 5" (click)="actualizar(nombre,email,celular)">
+      <button ion-button icon-start block color="dark" tappable  (click)="actualizar(nombre,email,celular)">
         <ion-icon name="log-in"></ion-icon>
         Actualizar
       </button>
+          <ion-buttons>
+    <button ion-button  block *ngIf="_usu.activo()" (click)="cerrar()">
+      Cerrar Sesión
+    </button>
+    </ion-buttons>
     </div>
 
 

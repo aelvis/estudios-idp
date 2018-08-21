@@ -3,8 +3,6 @@ import { NavController } from 'ionic-angular';
 import { CursoService } from '../../providers/curso/curso';
 import { CursoPage, AlumnosPage } from '../index.paginas';
 import { UsuarioService } from '../../providers/usuario/usuario';
-import { Platform } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -15,10 +13,15 @@ export class HomePage {
   cursosprueba:any[] = [];
   total:any[] = [];
   alumnosPage = AlumnosPage;
-  constructor(public navCtrl: NavController, private _cs: CursoService, private _usu: UsuarioService,private storage: Storage, private platform: Platform) {
+  role;
+  constructor(public _usu: UsuarioService,public navCtrl: NavController, private _cs: CursoService) {
   }
   ionViewWillEnter(){
-    console.log(this._usu.identity.role);
+    if(this._usu.identity == null){
+      this.role="jojo";
+    }else{
+      this.role=this._usu.identity.role;
+    }
     this._cs.getCursos().subscribe(
       data => { 
           if(data.error){

@@ -1,15 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <ion-buttons left>
-		<button ion-button icon-only *ngIf="_usu.activo()" (click)="_usu.cerrar_sesion()">
-			<ion-icon name="log-out"></ion-icon>
-		</button>
-    </ion-buttons>
     <ion-title style="text-align: center;">
       Bienvenidos
     </ion-title> 
     <ion-buttons right>
-    	<div *ngIf="_usu.identity?.role === 'TEACHER'">
+    	<div *ngIf="role === 'TEACHER'">
     		<button ion-button icon-only  [navPush]="alumnosPage">
 			<ion-icon name="easel"></ion-icon>
 		</button>

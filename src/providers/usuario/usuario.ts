@@ -12,8 +12,8 @@ export class UsuarioService {
   codigo;
   mensaje;
   constructor(public http: Http, private alertCtrl: AlertController, private platform: Platform, private storage: Storage) {
-	this.getToken();
-	this.getIdentity();
+  this.getToken();
+  this.getIdentity();
   }
   activo(): boolean{
   	if(this.token){
@@ -76,40 +76,44 @@ export class UsuarioService {
       );
   }
   cerrar_sesion(){
-  	this.token = null;
-  	this.identity = null;
+    this.token = null;
+    this.identity = null;
   	this.guardar_session_token();
   	this.guardar_session_identity();
   }
-  private guardar_session_token(){
+  public guardar_session_token(){
   	if(this.platform.is("cordova")){
   		//celular
   		if(this.token){
   			this.storage.set("token", this.token);
   		}else{
-        this.storage.remove("token");
+        this.storage.clear();
       }
   	}else{	
   		//desktop
   		if(this.token){
   			localStorage.setItem("token", this.token);
   		}else{
-  			localStorage.removeItem("token");
+        console.log("limpiar token");
+        localStorage.clear();
   		}
   	}
   }
-  private guardar_session_identity(){
+  public guardar_session_identity(){
   	if(this.platform.is("cordova")){
   		//celular
   		if(this.identity){
   			this.storage.set("identity", this.identity);
-  		}
+  		}else{
+        this.storage.clear();
+      }
   	}else{	
   		//desktop
   		if(this.identity){
   			localStorage.setItem("identity", JSON.stringify(this.identity));
   		}else{
-  			localStorage.removeItem("identity");
+        console.log("limpiar identity");
+  			localStorage.clear();
   		}
   		
   	}
