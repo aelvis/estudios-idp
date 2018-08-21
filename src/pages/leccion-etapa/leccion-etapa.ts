@@ -6,12 +6,10 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'leccion-etapa.html',
 })
 export class LeccionEtapaPage {
-
+  datos:any[] = [];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LeccionEtapaPage');
+  ionViewWillEnter(){
+  	this.datos = this.navParams.get("enviar");
   }
-
 }

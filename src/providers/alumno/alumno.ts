@@ -20,6 +20,7 @@ export class AlumnoService {
   mensaje:any[] = [];
   id_respuesta_formulario:any[] = [];
   itemsd_id: string = "true";
+  actividades:any[] = [];
   constructor( public _usu:UsuarioService ,public http: Http) {
   }
 	getListaAlumnos(){
@@ -92,5 +93,15 @@ export class AlumnoService {
 					    this.mensaje = obtener.mensaje.msg;
 					}
 				});
+	}
+	getListaActividades(){
+			return this.http.get(URL_SERVICIOS+'alumnos/actividades').map(res => res.json()).subscribe(
+				obtener => {
+			  		if(obtener.actividades){
+			  			this.actividades = obtener.actividades;
+			  		}else{
+
+			  		}
+			  	});  
 	}
 }

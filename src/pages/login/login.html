@@ -2,18 +2,16 @@
   <ion-navbar color='primary'>
     <ion-title style="text-align: center;">Actividades</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content animated fadeIn padding fullscreen>
+<ion-content animated fadeIn fullscreen>
   <ion-grid *ngIf="_usu.activo()">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <ion-row *ngFor="let pares of _alum.actividades">
+        <ion-card [navParams]="{enviar: pares}" [navPush]="leccionEtapaPage">
+          <!--<img [src]="pares.imagen | imagen">-->
+          <div class="card-title" style="text-align: center"><b>{{pares.nombre}}</b></div>
+          <div class="card-subtitle">{{pares.descripcion}}</div>
+        </ion-card>
+      </ion-row>
   </ion-grid>
   <ion-grid *ngIf="_usu.activo() === false">
     <p>Realizar Login</p>
