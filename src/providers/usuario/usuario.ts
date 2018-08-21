@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 import { AlertController, Platform } from 'ionic-angular';
 import { URL_SERVICIOS } from '../../config/url.servicios';
 import { Storage } from '@ionic/storage';
-
 @Injectable()
 export class UsuarioService {
   token;
@@ -32,6 +31,26 @@ export class UsuarioService {
     let url = URL_SERVICIOS + 'auth/registroLogin/';
     return this.http.post(url, params).map(res => res.json());
   }
+  update_password(email:string){
+    let params = new URLSearchParams();
+    params.append("email", email);
+    let url = URL_SERVICIOS + 'auth/updateEmail/';
+    return this.http.post(url, params).map(res => res.json());
+  }
+  update_codigo(cod:string){
+    let params = new URLSearchParams();
+    params.append("codigo", cod);
+    let url = URL_SERVICIOS + 'auth/verifiyCod/';
+    return this.http.post(url, params).map(res => res.json());
+  }
+  update_co(correo:string,contr:string){
+    let params = new URLSearchParams();
+    params.append("correo", correo);
+    params.append("password", contr);
+    let url = URL_SERVICIOS + 'auth/updatePassword/';
+    let headers = new Headers({'Content-Type':'application/json','Authorization': this.token});
+    return this.http.put(url, params, {headers: headers}).map(res => res.json());
+  }
   ingresar(correo:string, password:string){
   	let data = new URLSearchParams();
   	data.append("correo", correo);
@@ -47,8 +66,7 @@ export class UsuarioService {
     			}).present();
     		}else{
     			this.token  = data_rest.usuario.token;
-    			this.identity  = data_rest.usuario.datos;
-    			//GUARDAR DATOS STORAGE  			
+    			this.identity  = data_rest.usuario.datos;		
   			this.guardar_session_token();
   			this.guardar_session_identity();
     		}

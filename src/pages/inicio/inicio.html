@@ -28,6 +28,7 @@
         <ion-input type="password" [(ngModel)]="password"></ion-input>
       </ion-item>
     </div>
+        <p text-right ion-text color="secondary" tappable (click)="recuperar()"><strong>Cambiar Contraseña?</strong></p>
     <div>
       <button ion-button icon-start block color="dark" tappable [disabled]=" correo.length < 5 || password.length < 5" (click)="ingresar()">
         <ion-icon name="log-in"></ion-icon>

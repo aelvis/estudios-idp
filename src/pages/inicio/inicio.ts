@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UsuarioService } from '../../providers/usuario/usuario';
-import { RegistroPage } from '../index.paginas';
+import { RegistroPage, UsuarioEditPage } from '../index.paginas';
 import { HomePage } from '../home/home';
 @Component({
   selector: 'page-inicio',
@@ -30,7 +30,11 @@ export class InicioPage {
   }
   ingresar(){
   	this._usu.ingresar(this.correo, this.password).subscribe(()=>{
-       this.navCtrl.push(HomePage);
+      if(this._usu.token != null){
+          this.navCtrl.push(HomePage);
+      }else{
+
+      }
   	});
   }
   actualizar(nombre, email, celular){
@@ -38,6 +42,9 @@ export class InicioPage {
   }
   register() {
     this.navCtrl.setRoot(RegistroPage);
+  }
+  recuperar(){
+    this.navCtrl.setRoot(UsuarioEditPage);
   }
   cerrar(){
     this._usu.token = null;
