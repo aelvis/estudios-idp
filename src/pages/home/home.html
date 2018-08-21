@@ -13,7 +13,7 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content fullscreen class="card-background-page">
+<ion-content animated fadeIn fullscreen class="card-background-page">
   	<ion-grid *ngIf="_usu.activo()">
 	  	<ion-row *ngFor="let pares of cursos">
 		    <ion-card [navParams]="{curso: pares.url_curso}" [navPush]="cursoPage">
