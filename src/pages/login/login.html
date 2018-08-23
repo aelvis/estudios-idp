@@ -6,14 +6,13 @@
 <ion-content animated fadeIn fullscreen>
   <ion-grid *ngIf="_usu.activo()">
       <ion-row *ngFor="let pares of _alum.actividades">
-        <ion-card [navParams]="{enviar: pares}" [navPush]="leccionEtapaPage">
-          <!--<img [src]="pares.imagen | imagen">-->
+        <ion-card [navParams]="{enviar: pares}" [navPush]="leccionEtapaPage" padding>
+          <img src="{{pares.foto}}"><br>
           <div class="card-title" style="text-align: center"><b>{{pares.nombre}}</b></div>
-          <div class="card-subtitle">{{pares.descripcion}}</div>
         </ion-card>
       </ion-row>
   </ion-grid>
   <ion-grid *ngIf="_usu.activo() === false">
-    <p>Realizar Login</p>
+   <img src="http://www.xplorhonduras.com/wp-content/uploads/a-la-capotin-canciones-folkloricas-de-honduras.jpg">
   </ion-grid>
 </ion-content>

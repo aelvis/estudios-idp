@@ -1,3 +1,25 @@
+li{
+  list-style:none
+}
+.quitar{
+      -webkit-padding-start: 0px !important;
+
+}
+.quitar2{
+      -webkit-padding-start: 10px !important;
+
+}
+.quitar3{
+      -webkit-padding-start: 20px !important;
+
+}
+code {
+    padding: .2rem .4rem;
+    font-size: 90%;
+    color: #cb666b;
+    background-color: #f3f6fa;
+    border-radius: 2px;
+}
 .auth-page {
   background-color: #fff;
   &::after {
