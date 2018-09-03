@@ -1,40 +1,22 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color='primary'>
     <ion-title>{{lec_one.nombre}}</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 <ion-content>
 <div *ngIf="cont.length === 0" padding>
 	<h4>{{lec_one.nombre}}</h4>
 	<div [innerHTML]="lec_one.descripcion"></div>
 </div>
 <div *ngIf="cont.length > 0">
-	  <ion-toolbar>
-	    <ion-segment [(ngModel)]="lec">
-	      <ion-segment-button value="inicio">
-	        Inicio
-	      </ion-segment-button>
-	      <ion-segment-button value="lecciones">
-	         Lista
-	      </ion-segment-button>
-	    </ion-segment>
-	  </ion-toolbar>
-	<div [ngSwitch]="lec" padding>
-	  <ion-list *ngSwitchCase="'inicio'">
-		<h4 style="text-align: center">{{lec_one.nombre}}</h4>
-		<div [innerHTML]="lec_one.descripcion"></div>
-	  </ion-list>
-	  <ion-list *ngSwitchCase="'lecciones'">
+	<div padding>
+	  <ion-list>
 	    <ion-item *ngFor="let item of cont" [navParams]="{curso: a.url_curso, id: b.url_etapa_curso, url: lec_one.url, thow: item.url_etapa_leccion }" 
 	    [navPush]="listadoCursoIdUrlLeccionPage">
 	      {{item.nombre_etapa_leccion}}
 	    </ion-item>
 	  </ion-list>
 	</div>
-
 </div>
 
 </ion-content>
