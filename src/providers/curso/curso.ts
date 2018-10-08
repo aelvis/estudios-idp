@@ -110,6 +110,7 @@ export class CursoService {
 			    }else{
 			        this.pregunta = data.pregunta;
 			        this.respuesta = data.respuesta;
+			        console.log(this.respuesta);
 			    }
     		}); 
 		}
