@@ -12,7 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 //SERIVICIOS
 import { CursoService, UsuarioService, AlumnoService } from '../providers/index.services';
 //PAGINAS
-import { UsuarioPage,AlumnosPage, CursoPage,FormularioPage,FormularioRespuestaPage,FormularioRespuestaVerPage,InicioPage,LeccionEtapaPage,ListadoAlumnosFormulariosPage,ListadoAlumnosFormulariosVerPage,ListadoAlumnosFormulariosVerIdPage,ListadoCursoIdPage,ListadoCursoIdUrlPage,ListadoCursoIdUrlLeccionPage,LoginPage,RegistroPage,UsuarioEditPage } from '../pages/index.paginas';
+import { TeacherUsuarioPage,IglesiaPage,AdminTeacherPage,UsuarioPage,AlumnosPage, CursoPage,FormularioPage,FormularioRespuestaPage,FormularioRespuestaVerPage,InicioPage,LeccionEtapaPage,ListadoAlumnosFormulariosPage,ListadoAlumnosFormulariosVerPage,ListadoAlumnosFormulariosVerIdPage,ListadoCursoIdPage,ListadoCursoIdUrlPage,ListadoCursoIdUrlLeccionPage,LoginPage,RegistroPage,UsuarioEditPage } from '../pages/index.paginas';
 //PIPES
 import { ImagenPipe } from '../pipes/imagen/imagen';
 @NgModule({
@@ -37,7 +37,10 @@ import { ImagenPipe } from '../pipes/imagen/imagen';
     RegistroPage,
     UsuarioEditPage,
     TabsPage,
-    UsuarioPage
+    UsuarioPage,
+    AdminTeacherPage,
+    IglesiaPage,
+    TeacherUsuarioPage
   ],
   imports: [
     BrowserModule,
@@ -66,13 +69,16 @@ import { ImagenPipe } from '../pipes/imagen/imagen';
     RegistroPage,
     UsuarioEditPage,
     TabsPage,
-    UsuarioPage
+    UsuarioPage,
+    AdminTeacherPage,
+    IglesiaPage,
+    TeacherUsuarioPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-        CursoService,
+    CursoService,
     UsuarioService,
     AlumnoService,
   ]

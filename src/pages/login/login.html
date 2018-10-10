@@ -3,7 +3,7 @@
     <ion-title style="text-align: center;">Actividades</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content animated fadeIn fullscreen>
+<ion-content fullscreen>
   <ion-grid *ngIf="_usu.activo()">
       <ion-row *ngFor="let pares of _alum.actividades">
         <ion-card [navParams]="{enviar: pares}" [navPush]="leccionEtapaPage" padding>
@@ -13,6 +13,6 @@
       </ion-row>
   </ion-grid>
   <ion-grid *ngIf="_usu.activo() === false">
-   <img src="http://www.xplorhonduras.com/wp-content/uploads/a-la-capotin-canciones-folkloricas-de-honduras.jpg">
+   <img src="https://somosmusica.pe/assets/registro.jpg">
   </ion-grid>
 </ion-content>

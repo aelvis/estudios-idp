@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title>Bienvenidos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<h1 style="text-align: center">Admin - Teacher</h1>
+
+  <ion-list>
+    <ion-item [navPush]="iglesia">
+      Iglesias
+    </ion-item>
+        <ion-item [navPush]="update">
+      Actualizar Usuario
+    </ion-item>
+        <ion-item [navPush]="alumnos">
+      Alumnos
+    </ion-item>
+  </ion-list>
+
+</ion-content>

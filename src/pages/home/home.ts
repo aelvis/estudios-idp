@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CursoService } from '../../providers/curso/curso';
-import { CursoPage, AlumnosPage } from '../index.paginas';
+import { CursoPage, AlumnosPage, AdminTeacherPage } from '../index.paginas';
 import { UsuarioService } from '../../providers/usuario/usuario';
 @Component({
   selector: 'page-home',
@@ -13,6 +13,7 @@ export class HomePage {
   cursosprueba:any[] = [];
   total:any[] = [];
   alumnosPage = AlumnosPage;
+  admin = AdminTeacherPage;
   role;
   constructor(public _usu: UsuarioService,public navCtrl: NavController, private _cs: CursoService) {
   }

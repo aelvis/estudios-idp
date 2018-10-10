@@ -9,7 +9,11 @@
 			<ion-icon name="easel"></ion-icon>
 		</button>
     	</div>
-		
+		<div *ngIf="role === 'AT'">
+    		<button ion-button icon-only  [navPush]="admin">
+			<ion-icon name="globe"></ion-icon>
+		</button>
+    	</div>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -23,6 +27,6 @@
 			  </ion-card>
 	  	</ion-row>
 	</ion-grid>
-	<ion-grid *ngIf="_usu.activo() === false"><img src="http://www.xplorhonduras.com/wp-content/uploads/a-la-capotin-canciones-folkloricas-de-honduras.jpg"></ion-grid>
+	<ion-grid *ngIf="_usu.activo() === false"><img src="https://somosmusica.pe/assets/registro.jpg"></ion-grid>
 
 </ion-content>

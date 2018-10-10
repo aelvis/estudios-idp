@@ -15,3 +15,6 @@ export { LoginPage } from './login/login';
 export { RegistroPage } from './registro/registro';
 export { UsuarioEditPage } from './usuario-edit/usuario-edit';
 export { UsuarioPage } from './usuario/usuario';
+export { AdminTeacherPage } from './admin-teacher/admin-teacher';
+export { IglesiaPage } from './iglesia/iglesia';
+export { TeacherUsuarioPage } from './teacher-usuario/teacher-usuario';
