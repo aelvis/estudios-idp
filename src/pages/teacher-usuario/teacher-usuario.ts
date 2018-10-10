@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { CursoService } from '../../providers/curso/curso';
+import { AlumnoService } from '../../providers/alumno/alumno';
 import { UsuarioPage } from '../index.paginas';
 
 @Component({
@@ -8,8 +8,25 @@ import { UsuarioPage } from '../index.paginas';
   templateUrl: 'teacher-usuario.html',
 })
 export class TeacherUsuarioPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _cs: CursoService) {
+	email: string = "";
+	mensaje_pregunta: string = "";
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _cs: AlumnoService) {
   }
   ionViewWillEnter(){
+  }
+  register(){
+	this._cs.cambiarUsuario(this.email).subscribe( 
+		    data => { 
+		        if(data.error){
+			    }else{
+			    	if(data.codigo == "success"){
+						this.mensaje_pregunta = data.msg;
+						this.email = "";
+			    	}else{
+			    	this.mensaje_pregunta = data.msg;	
+			    	}
+			    	
+			    }
+    		});
   }
 }

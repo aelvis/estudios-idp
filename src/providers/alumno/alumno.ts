@@ -21,8 +21,32 @@ export class AlumnoService {
   id_respuesta_formulario:any[] = [];
   itemsd_id: string = "true";
   actividades:any[] = [];
+
   constructor( public _usu:UsuarioService ,public http: Http) {
   }
+	registeriglesia(nombre:string,direccion:string,codigo:string){
+		let url = URL_SERVICIOS + 'usuario/registroIglesia/';
+		let datas = new URLSearchParams();
+  		    datas.append("nombre", nombre);
+  		    datas.append("direccion", direccion);
+  		    datas.append("codigo", codigo);
+		let headers = new Headers({'Content-Type':'application/json','Authorization': this._usu.token});
+		let options = new RequestOptions({headers: headers});
+		return this.http.post(url, datas, options).map(res => res.json()); 
+	}
+	cambiarUsuario(email:string){
+		let url = URL_SERVICIOS + 'usuario/registroUsuarioTeacher/';
+		let datas = new URLSearchParams();
+  		    datas.append("email", email);
+		let headers = new Headers({'Content-Type':'application/json','Authorization': this._usu.token});
+		let options = new RequestOptions({headers: headers});
+		return this.http.post(url, datas, options).map(res => res.json()); 
+	}	
+	getIglesia(){
+			let headers = new Headers({'Content-Type':'application/json','Authorization': this._usu.token});
+			let options = new RequestOptions({headers: headers});
+			return this.http.get(URL_SERVICIOS+'usuario/iglesia', options).map(res => res.json());  
+	}
 	getListaAlumnos(){
 			let headers = new Headers({'Content-Type':'application/json','Authorization': this._usu.token});
 			let options = new RequestOptions({headers: headers});

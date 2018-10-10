@@ -1,14 +1,50 @@
 <ion-header>
   <ion-navbar color='primary'>
-    <ion-title>Iglesia</ion-title>
+    <ion-title>IGLESIAS</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-	<h1 style="text-align: center">Iglesia</h1>
 
-  <p>Iglesia</p>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Nombre Completo
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Dirección
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="direccion"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" item-start class="text-primary"></ion-icon>
+          Codigo Iglesia
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="codigo"></ion-input>
+      </ion-item>
+
+    <div margin-top>
+      <button ion-button block color="dark" tappable (click)="register()" [disabled]=" nombre.length < 5 || direccion.length < 5 || codigo.length < 4 ">
+       Agregar
+      </button>
+    </div>
+    <p>{{mensaje_pregunta}}</p>
+    <h3 style="text-align: center">Listado de Iglesias</h3>
+    <ion-grid>
+      <ion-row *ngFor="let pares of mensaje">
+        <ion-card padding>
+          <div class="card-title">{{pares.nombre_iglesia}}</div>
+          <div class="card-subtitle">Codigo: {{pares.codigo_iglesia}}</div>
+        </ion-card>
+      </ion-row>
+  </ion-grid>
 </ion-content>
