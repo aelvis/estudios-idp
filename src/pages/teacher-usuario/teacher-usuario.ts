@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlumnoService } from '../../providers/alumno/alumno';
-import { UsuarioPage } from '../index.paginas';
 
 @Component({
   selector: 'page-teacher-usuario',
